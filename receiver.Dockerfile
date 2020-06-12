@@ -22,6 +22,6 @@ RUN cd /root/unencrypted && git init .
 
 RUN cd /root/unencrypted && git remote add cryptremote gcrypt::/root/gpg-encrypted-git-remotes-encrypted 
 
-RUN cd /root/unencrypted && git pull cryptremote origin/master
+RUN cd /root/unencrypted && git pull cryptremote master
 
 RUN ls /root/unencrypted

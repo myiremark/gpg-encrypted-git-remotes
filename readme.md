@@ -34,6 +34,11 @@ docker exec -it gpg_encrypted_repo_sender /bin/bash -c "cd /root/gpg-encrypted-g
 docker exec -it gpg_encrypted_repo_sender /bin/bash -c "cd /root/gpg-encrypted-git-remotes && git pull origin master"
 ```
 
+### make your modifications then push to a new repo
+```
+docker exec -it gpg_encrypted_repo_sender /bin/bash -c "cd /root/gpg-encrypted-git-remotes && git push cryptremote master"
+```
+
 ## make note of the current commit hash for checking later
 ```
 docker exec -it gpg_encrypted_repo_sender /bin/bash -c "cd /root/gpg-encrypted-git-remotes && git checkout origin/master && git rev-parse HEAD"
