@@ -16,6 +16,10 @@ git-remote-gcrypt allows seamless encryption of remote git repositories.  This r
 - [ssh](https://www.ssh.com/ssh/)
 - [git-remote-gcrypt](https://github.com/spwhitton/git-remote-gcrypt)
 
+# TODO
+
+This repo only shows use of one gpg key that is exported and shared and needs to show the facilities of git-remote-gcrypt for multi participant collaboration
+
 ## Instructions
 
 The contents of [https://github.com/myiremark/gpg-encrypted-git-remotes-encrypted.git](https://github.com/myiremark/gpg-encrypted-git-remotes-encrypted.git) are encrypted using the private key in this repo.  
