@@ -1,0 +1,10 @@
+     %echo Generating a default key
+     %no-protection
+     Key-Type: default
+     Subkey-Type: default
+     Name-Real: sender key
+     Name-Comment: sender key
+     Name-Email: sender@domain.com
+     Expire-Date: 0
+     %commit
+     %echo generated key
