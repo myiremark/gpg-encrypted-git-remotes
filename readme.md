@@ -24,6 +24,10 @@ This can be verified by building the receiver container, importing the gpg key a
 
 The output hash for the last commit should be the same using the commands below.
 
+#### ATTENTION: notice the --no-cache below! we're using git in the docker files.
+
+In order to rebuild this from source and modify, you'll have to copy lines 9-13 from [receiver.Dockerfile](https://github.com/myiremark/gpg-encrypted-git-remotes/blob/master/receiver.Dockerfile#L9-L13) into lines 9-13 of [sender.Dockerfile](https://github.com/myiremark/gpg-encrypted-git-remotes/blob/master/sender.Dockerfile#L9-L13) and build again with --no-cache.
+
 ```
 git clone git@github.com:myiremark/gpg-encrypted-git-remotes.git && cd gpg-encrypted-git-remotes
 ```
@@ -38,17 +42,11 @@ docker run --name=gpg_encrypted_repo_receiver -dt myiremark/gpg_encrypted_repo_r
 
 ## see the unencrypted repo and its commit hash
 ```
-docker exec -it gpg_encrypted_repo_receiver /bin/bash -c 'git config --global user.email "you@example.com"'
-docker exec -it gpg_encrypted_repo_receiver /bin/bash -c 'git config --global user.name "your name"'
-
-docker exec -it gpg_encrypted_repo_receiver /bin/bash -c "cd /root/gpg-encrypted-git-remotes-encrypted && git pull origin master --allow-unrelated-histories && git checkout master"
-
-docker exec -it gpg_encrypted_repo_receiver /bin/bash -c "cd /root/unencrypted && git pull cryptremote master && git checkout master && git rev-parse HEAD"
+docker exec -it gpg_encrypted_repo_receiver /bin/bash -c "cd /root/unencrypted && git rev-parse HEAD"
 ```
 
 # SENDER
 
-#### notice the --no-cache below! we're using git in the docker files.
 
 ## build and run the sender container
 

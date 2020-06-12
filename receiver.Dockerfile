@@ -4,9 +4,7 @@ MAINTAINER "Mark Graves <mark@myire.com>"
 
 RUN apt-get update -y && apt-get install -y gpg git git-remote-gcrypt
 
-COPY generate-key.sh /root/generate-key.sh
-
-RUN ssh-keygen -t ecdsa -f /root/.ssh/id_ecdsa -q -P "" 0>&-
+# Copy and import gpg key
 
 COPY sender.privatekey.asc /root/sender.privatekey.asc
 
@@ -22,6 +20,6 @@ RUN cd /root/unencrypted && git init .
 
 RUN cd /root/unencrypted && git remote add cryptremote gcrypt::/root/gpg-encrypted-git-remotes-encrypted 
 
-RUN cd /root/unencrypted && git pull cryptremote master
+RUN cd /root/unencrypted && git pull cryptremote master && git checkout master
 
 RUN ls /root/unencrypted
