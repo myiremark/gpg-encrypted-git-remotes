@@ -38,6 +38,11 @@ docker run --name=gpg_encrypted_repo_receiver -dt myiremark/gpg_encrypted_repo_r
 
 ## see the unencrypted repo and its commit hash
 ```
+docker exec -it gpg_encrypted_repo_receiver /bin/bash -c 'git config --global user.email "you@example.com"'
+docker exec -it gpg_encrypted_repo_receiver /bin/bash -c 'git config --global user.name "your name"'
+
+docker exec -it gpg_encrypted_repo_receiver /bin/bash -c "cd /root/gpg-encrypted-git-remotes-encrypted && git pull origin master --allow-unrelated-histories && git checkout master"
+
 docker exec -it gpg_encrypted_repo_receiver /bin/bash -c "cd /root/unencrypted && git pull cryptremote master && git checkout master && git rev-parse HEAD"
 ```
 
