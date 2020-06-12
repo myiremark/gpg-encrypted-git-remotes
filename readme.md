@@ -28,7 +28,20 @@ The output hash for the last commit should be the same using the commands below.
 git clone git@github.com:myiremark/gpg-encrypted-git-remotes.git && cd gpg-encrypted-git-remotes
 ```
 
-# sender
+# RECEIVER
+
+```
+docker build -t myiremark/gpg_encrypted_repo_receiver:latest -f receiver.Dockerfile .  --no-cache
+
+docker run --name=gpg_encrypted_repo_receiver -dt myiremark/gpg_encrypted_repo_receiver:latest
+```
+
+## see the unencrypted repo and its commit hash
+```
+docker exec -it gpg_encrypted_repo_receiver /bin/bash -c "cd /root/unencrypted && git pull cryptremote master && git checkout master && git rev-parse HEAD"
+```
+
+# SENDER
 
 #### notice the --no-cache below! we're using git in the docker files.
 
@@ -63,23 +76,10 @@ docker exec -it gpg_encrypted_repo_sender /bin/bash -c "cd /root/gpg-encrypted-g
 
 ## make note of the current commit hash for checking later
 ```
-docker exec -it gpg_encrypted_repo_sender /bin/bash -c "cd /root/gpg-encrypted-git-remotes && git checkout origin/master && git rev-parse HEAD"
+docker exec -it gpg_encrypted_repo_sender /bin/bash -c "cd /root/gpg-encrypted-git-remotes && git checkout master && git rev-parse HEAD"
 ```
 ## make changes to repo and push 
 
 ```
 docker exec -it gpg_encrypted_repo_sender /bin/bash -c "cd /root/gpg-encrypted-git-remotes && git push cryptremote master"
-```
-
-# Receiver
-
-```
-docker build -t myiremark/gpg_encrypted_repo_receiver:latest -f receiver.Dockerfile .  --no-cache
-
-docker run --name=gpg_encrypted_repo_receiver -dt myiremark/gpg_encrypted_repo_receiver:latest
-```
-
-## see the unencrypted repo and its commit hash
-```
-docker exec -it gpg_encrypted_repo_receiver /bin/bash -c "cd /root/unencrypted && git pull cryptremote master && git checkout master && git rev-parse HEAD"
 ```
