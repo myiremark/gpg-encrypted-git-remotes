@@ -1,6 +1,28 @@
 # gpg-encrypted-git-remotes
 
+git-remote-gcrypt allows seamless encryption of remote git repositories.  This repo demonstrates how to store code remotely, encrypted, and still collaborate using git.
+
+# HIGHLIGHTS
+
+- GPG Key Creation
+- Encrypted centralized git sharing
+- Assumes an untrusted hosting environment
+
+# KEYWORDS
+
+- [gnupg](https://gnupg.org/)
+- [pgp](https://gnupg.org/)
+- [git](https://git-scm.com/)
+- [ssh](https://www.ssh.com/ssh/)
+- [git-remote-gcrypt](https://github.com/spwhitton/git-remote-gcrypt)
+
 ## Instructions
+
+The contents of [https://github.com/myiremark/gpg-encrypted-git-remotes-encrypted.git](https://github.com/myiremark/gpg-encrypted-git-remotes-encrypted.git) are encrypted using the private key in this repo.  
+
+This can be verified by building the receiver container, importing the gpg key and pulling using the enclosed receiver.Dockerfile.
+
+The output hash for the last commit should be the same using the commands below.
 
 ```
 git clone git@github.com:myiremark/gpg-encrypted-git-remotes.git && cd gpg-encrypted-git-remotes
